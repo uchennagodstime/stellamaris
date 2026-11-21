@@ -1,1 +1,114 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Order Manager | S'Maris Designs</title><link rel="stylesheet" href="assets/style.css"><style>.admin-wrap{padding:55px 0}.admin-panel{background:white;border:1px solid var(--line);padding:25px;margin:20px 0;overflow-x:auto}.admin-panel input,.admin-panel select{padding:10px;border:1px solid var(--line);margin:5px}.orders-table{width:100%;border-collapse:collapse;min-width:760px}.orders-table th,.orders-table td{text-align:left;padding:12px;border-bottom:1px solid var(--line);font-size:.85rem;vertical-align:top}.orders-table th{font-size:.7rem;text-transform:uppercase;letter-spacing:.1em}.status{padding:5px 8px;background:var(--cream);font-size:.72rem}.admin-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.hidden{display:none!important}</style></head><body><div class="topline">Private staff area</div><header class="header"><div class="container nav-wrap"><a class="brand" href="index.html"><strong>S'Maris</strong><small>DESIGNS</small></a><a class="text-link" href="index.html">← View website</a></div></header><main class="container admin-wrap"><span class="eyebrow">S'Maris Designs</span><h1 style="font-family:'Playfair Display',serif;font-weight:500">Order management</h1><section id="login-panel" class="admin-panel"><h2>Staff sign in</h2><form id="login-form"><div class="field"><label>Email</label><input type="email" id="admin-email" required></div><div class="field" style="margin-top:12px"><label>Password</label><input type="password" id="admin-password" required></div><button class="btn" style="margin-top:18px">Sign in</button><p id="login-feedback" class="notice" hidden></p></form></section><section id="orders-panel" class="admin-panel hidden"><div style="display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap"><h2>Customer orders</h2><div class="admin-actions"><button class="btn btn-outline" id="refresh-orders">Refresh</button><button class="btn" id="logout">Sign out</button></div></div><p id="admin-feedback" class="notice" hidden></p><div style="overflow-x:auto"><table class="orders-table"><thead><tr><th>Order</th><th>Customer</th><th>Design</th><th>Needed by</th><th>Status</th><th>Update</th></tr></thead><tbody id="orders-body"></tbody></table></div></section></main><script type="module" src="assets/admin.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Order Manager | S'Maris Designs</title>
+    <link rel="stylesheet" href="assets/style.css">
+    <style>
+        .admin-wrap {
+            padding: 55px 0
+        }
+
+        .admin-panel {
+            background: white;
+            border: 1px solid var(--line);
+            padding: 25px;
+            margin: 20px 0;
+            overflow-x: auto
+        }
+
+        .admin-panel input,
+        .admin-panel select {
+            padding: 10px;
+            border: 1px solid var(--line);
+            margin: 5px
+        }
+
+        .orders-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 760px
+        }
+
+        .orders-table th,
+        .orders-table td {
+            text-align: left;
+            padding: 12px;
+            border-bottom: 1px solid var(--line);
+            font-size: .85rem;
+            vertical-align: top
+        }
+
+        .orders-table th {
+            font-size: .7rem;
+            text-transform: uppercase;
+            letter-spacing: .1em
+        }
+
+        .status {
+            padding: 5px 8px;
+            background: var(--cream);
+            font-size: .72rem
+        }
+
+        .admin-actions {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            flex-wrap: wrap
+        }
+
+        .hidden {
+            display: none !important
+        }
+    </style>
+</head>
+
+<body>
+    <div class="topline">Private staff area</div>
+    <header class="header">
+        <div class="container nav-wrap"><a class="brand"
+                href="index.html"><strong>S'Maris</strong><small>DESIGNS</small></a><a class="text-link"
+                href="index.html">← View website</a></div>
+    </header>
+    <main class="container admin-wrap"><span class="eyebrow">S'Maris Designs</span>
+        <h1 style="font-family:'Playfair Display',serif;font-weight:500">Order management</h1>
+        <section id="login-panel" class="admin-panel">
+            <h2>Staff sign in</h2>
+            <form id="login-form">
+                <div class="field"><label>Email</label><input type="email" id="admin-email" required></div>
+                <div class="field" style="margin-top:12px"><label>Password</label><input type="password"
+                        id="admin-password" required></div><button class="btn" style="margin-top:18px">Sign in</button>
+                <p id="login-feedback" class="notice" hidden></p>
+            </form>
+        </section>
+        <section id="orders-panel" class="admin-panel hidden">
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap">
+                <h2>Customer orders</h2>
+                <div class="admin-actions"><button class="btn btn-outline" id="refresh-orders">Refresh</button><button
+                        class="btn" id="logout">Sign out</button></div>
+            </div>
+            <p id="admin-feedback" class="notice" hidden></p>
+            <div style="overflow-x:auto">
+                <table class="orders-table">
+                    <thead>
+                        <tr>
+                            <th>Order</th>
+                            <th>Customer</th>
+                            <th>Design</th>
+                            <th>Needed by</th>
+                            <th>Status</th>
+                            <th>Update</th>
+                        </tr>
+                    </thead>
+                    <tbody id="orders-body"></tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+    <script type="module" src="assets/admin.js"></script>
+</body>
+
+</html>
