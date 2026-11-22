@@ -22,6 +22,11 @@ create table if not exists public.orders (
 create table if not exists public.staff_roles (
  user_id uuid primary key references auth.users(id) on delete cascade,
  role text not null check (role in ('admin'))
+
+ insert into public.staff_roles (user_id, role)
+ values ('73ea83ab-07d7-41d1-b63e-b6df5b6572af', 'admin')
+ on conflict (user_id)
+do update set role = 'admin';
 );
 alter table public.orders enable row level security;
 alter table public.staff_roles enable row level security;

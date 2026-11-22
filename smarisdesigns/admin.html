@@ -78,9 +78,20 @@
         <section id="login-panel" class="admin-panel">
             <h2>Staff sign in</h2>
             <form id="login-form">
-                <div class="field"><label>Email</label><input type="email" id="admin-email" required></div>
-                <div class="field" style="margin-top:12px"><label>Password</label><input type="password"
-                        id="admin-password" required></div><button class="btn" style="margin-top:18px">Sign in</button>
+                <div class="field">
+                    <label for="admin-email">Email</label>
+                    <input type="email" id="admin-email" autocomplete="username" required>
+                </div>
+                <!-- <div class="field"><label>Email</label><input type="email" id="admin-email" required></div> -->
+                <!-- <div class="field" style="margin-top:12px"><label>Password</label><input type="password"
+                        id="admin-password" required></div> -->
+
+                <div class="field" style="margin-top:12px">
+                    <label for="admin-password">Password</label>
+                    <input type="password" id="admin-password" autocomplete="current-password" required>
+                </div>
+
+                <button class="btn" style="margin-top:18px">Sign in</button>
                 <p id="login-feedback" class="notice" hidden></p>
             </form>
         </section>
@@ -97,6 +108,8 @@
                         <tr>
                             <th>Order</th>
                             <th>Customer</th>
+                            <th>Email</th>
+                            <th>Phone</th>
                             <th>Design</th>
                             <th>Needed by</th>
                             <th>Status</th>
