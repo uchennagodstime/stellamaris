@@ -1,5 +1,3 @@
-
-
 import {
     createClient
 } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
@@ -167,6 +165,49 @@ function createCell(value) {
     return cell;
 }
 
+// Display a private reference image from Supabase Storage
+function createReferenceCell(imagePath) {
+    const cell = document.createElement('td');
+
+    if (!imagePath) {
+        cell.textContent = 'No image';
+        return cell;
+    }
+
+    cell.textContent = 'Loading image...';
+
+    db.storage
+        .from('order-references')
+        .createSignedUrl(imagePath, 3600)
+        .then(({
+            data,
+            error
+        }) => {
+            if (error || !data ?.signedUrl) {
+                cell.textContent = 'Image unavailable';
+                console.error('Image loading error:', error);
+                return;
+            }
+
+            const image = document.createElement('img');
+            image.src = data.signedUrl;
+            image.alt = 'Customer reference image';
+            image.style.width = '90px';
+            image.style.height = '90px';
+            image.style.objectFit = 'cover';
+            image.style.borderRadius = '8px';
+            image.style.cursor = 'pointer';
+
+            image.addEventListener('click', () => {
+                window.open(data.signedUrl, '_blank', 'noopener');
+            });
+
+            cell.replaceChildren(image);
+        });
+
+    return cell;
+}
+
 // Format dates
 function formatDate(value) {
     if (!value) return '—';
@@ -221,6 +262,7 @@ async function loadOrders() {
                 fabric_preference,
                 measurements,
                 design_details,
+                reference_image_path,
                 status,
                 created_at,
                 updated_at
@@ -237,7 +279,7 @@ async function loadOrders() {
             const row = document.createElement('tr');
             const cell = document.createElement('td');
 
-            cell.colSpan = 8;
+            cell.colSpan = 9;
             cell.textContent = 'No customer orders received yet.';
 
             row.append(cell);
@@ -259,6 +301,9 @@ async function loadOrders() {
 
             // 4. Customer phone
             row.append(createCell(order.customer_phone));
+
+            // Reference image
+            row.append(createReferenceCell(order.reference_image_path));
 
             // 5. Design information
             const designCell = document.createElement('td');
